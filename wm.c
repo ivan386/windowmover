@@ -1,5 +1,8 @@
+#define _WIN32_WINNT 0x0500
 #include <stdio.h>
 #include <windows.h>
+
+HWND console_window;
 
 HWND active_window;
 RECT active_window_rect;
@@ -137,6 +140,8 @@ CALLBACK move_by_active_window(HWND window, LPARAM lParam)
 
 
 int main(int argc, char *argv[]){
+	console_window = GetConsoleWindow();
+	ShowWindow(console_window, SW_MINIMIZE);
 	active_window =  GetForegroundWindow();
 	desktop_window = GetDesktopWindow();
 	get_window_rect(desktop_window, &desktop_window_rect);
